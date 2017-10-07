@@ -5,14 +5,10 @@ console.log('iamhere');
 let express = require('express');
 let app = express();
 let PORT = process.env.PORT || 3000;
-
+var bodyParser = require('body-parser');
 
 //uses public dir in express invokation
 app.use(express.static('public'));
-
-
-
-
 
 
 

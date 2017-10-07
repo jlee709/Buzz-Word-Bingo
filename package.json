@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/jlee709/Buzz-Word-Bingo#readme",
   "dependencies": {
+    "body-parser": "^1.18.2",
     "express": "^4.16.1"
   }
 }
