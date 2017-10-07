@@ -20,6 +20,22 @@ app.get('/buzzwords', (req, res) => {
   res.send('this is the buzzwords');
 });
 
+app.post('/buzzwords', (req, res) =>{
+  console.log('will do post on buzzwords');
+});
+
+app.put('/buzzwords', (req, res) => {
+  console.log('does put reuest');
+});
+
+app.delete('/buzzwords', (req, res) => {
+  console.log('adds delete method');
+});
+
+app.post('/reset', (req, res) => {
+  console.log('sets reset to true');
+});
+
   
 
 
