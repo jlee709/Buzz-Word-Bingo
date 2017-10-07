@@ -38,7 +38,7 @@ app.post('/the-buzz-word', (req, res) =>{
 });
 
 app.put('/the-buzz-word', (req, res) => {
-  console.log('does put reqest');
+  console.log('PUT request executing');
   for(let i = 0; i < buzzArry.length; i++){
 
     if(buzzArry[i].buzzword === req.body.buzzword){
@@ -46,16 +46,18 @@ app.put('/the-buzz-word', (req, res) => {
       buzzArry.push(req.body);
       score = score + 1;
       return res.json({ "success": true, newScore: score });
-
     } 
   }   
 
-  console.log('adding PUT');
   return res.json({ "success": false, newScore: score  });
 });
 
+
 app.delete('/the-buzz-word', (req, res) => {
-  console.log('adds delete method');
+  
+  console.log('DELETE method executing');
+
+  return res.json({ "success": true });
 });
 
 app.post('/reset', (req, res) => {
@@ -63,11 +65,6 @@ app.post('/reset', (req, res) => {
 });
 
   
-
-
-
-
-
 
 //port listens
 app.listen(PORT, (err) => {
