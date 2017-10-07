@@ -10,6 +10,17 @@ var bodyParser = require('body-parser');
 //uses public dir in express invokation
 app.use(express.static('public'));
 
+//routes
+
+app.get('/', (req, res)=> {
+  res.send('Hello');
+});
+
+app.get('/buzzwords', (req, res) => {
+  res.send('this is the buzzwords');
+});
+
+  
 
 
 
