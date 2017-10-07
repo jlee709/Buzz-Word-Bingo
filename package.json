@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/jlee709/Buzz-Word-Bingo/issues"
   },
-  "homepage": "https://github.com/jlee709/Buzz-Word-Bingo#readme"
+  "homepage": "https://github.com/jlee709/Buzz-Word-Bingo#readme",
+  "dependencies": {
+    "express": "^4.16.1"
+  }
 }
