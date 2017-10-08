@@ -1,4 +1,5 @@
 //jshint esversion:6
+
 console.log('iamhere');
 
 //initial depencies
@@ -8,23 +9,21 @@ let PORT = process.env.PORT || 3000;
 var bodyParser = require('body-parser');
 
 //the-buzz-words array variable
+const players = {player: 'string', score: 0};
 var buzzArry =[];
 var score = 0;
 //uses public dir in express invokation
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({extended:false}));
 
-//routes
-
+//routes chained 
 app.get('/', (req, res)=> {
   res.send('Hello');
-});
-
-app.get('/the-buzz-words', (req, res) => {
+})
+ .get('/the-buzz-words', (req, res) => {
   res.json({"buzzwords": buzzArry});
-});
-
-app.post('/the-buzz-word', (req, res) =>{
+})
+.post('/the-buzz-word', (req, res) =>{
   console.log('will do post on the-buzz-words');
   for(let i = 0; i < buzzArry.length; i++){
     if(buzzArry[i].buzzword === req.body.buzzword){
@@ -35,9 +34,8 @@ app.post('/the-buzz-word', (req, res) =>{
   buzzArry.push(req.body);
   console.log(req.body);
   res.json({ "success": true });
-});
-
-app.put('/the-buzz-word', (req, res) => {
+})
+.put('/the-buzz-word', (req, res) => {
   console.log('PUT request executing');
   for(let i = 0; i < buzzArry.length; i++){
 
@@ -49,22 +47,19 @@ app.put('/the-buzz-word', (req, res) => {
     } 
   }   
 
-  return res.json({ "success": false, newScore: score  });
-});
-
-
-app.delete('/the-buzz-word', (req, res) => {
+  return res.json({ "success": true, newScore: score  });
+})
+.delete('/the-buzz-word', (req, res) => {
   
   console.log('DELETE method executing');
-
   return res.json({ "success": true });
-});
+})
+.post('/reset', (req, res) => {
+  console.log('RESET invoaked, clearing data');
 
-app.post('/reset', (req, res) => {
-  console.log('sets reset to true');
+  res.json({ "reset": true });
+  return res.end();
 });
-
-  
 
 //port listens
 app.listen(PORT, (err) => {
