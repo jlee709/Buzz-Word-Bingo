@@ -23,6 +23,7 @@ app.get('/', (req, res)=> {
  .get('/the-buzz-words', (req, res) => {
   res.json({"buzzwords": buzzArry});
 })
+
 .post('/the-buzz-word', (req, res) =>{
   console.log('will do post on the-buzz-words');
   for(let i = 0; i < buzzArry.length; i++){
@@ -35,13 +36,14 @@ app.get('/', (req, res)=> {
   console.log(req.body);
   res.json({ "success": true });
 })
+
 .put('/the-buzz-word', (req, res) => {
   console.log('PUT request executing');
   for(let i = 0; i < buzzArry.length; i++){
 
     if(buzzArry[i].buzzword === req.body.buzzword){
       console.log('cant share the same buzzword');
-      buzzArry.push(req.body);
+      buzzArry[i] = req.body;
       score = score + 1;
       return res.json({ "success": true, newScore: score });
     } 
@@ -49,16 +51,25 @@ app.get('/', (req, res)=> {
 
   return res.json({ "success": true, newScore: score  });
 })
-.delete('/the-buzz-word', (req, res) => {
+
+.delete('/the-buzz-word/:buzzword', (req, res) => {
   
   console.log('DELETE method executing');
-  return res.json({ "success": true });
+  console.log(req.params.buzzword);
+
+  for(let i = 0; i < buzzArry.length; i++){
+    if(buzzArry[i].buzzword === req.params.buzzword){
+      buzzArry.splice(i, 1);
+      return res.json({ "success": true });
+    }
+  }
 })
+    
 .post('/reset', (req, res) => {
   console.log('RESET invoaked, clearing data');
-
-  res.json({ "reset": true });
-  return res.end();
+  console.log(req.body);
+  buzzArry = [];
+  return res.json({ "success": true });
 });
 
 //port listens
